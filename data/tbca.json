@@ -1,0 +1,452 @@
+{
+ "frango peito grelhado": [
+  159,
+  32,
+  0,
+  2.5
+ ],
+ "frango peito cru": [
+  120,
+  23,
+  0,
+  2.5
+ ],
+ "frango coxa sem pele": [
+  170,
+  26,
+  0,
+  7
+ ],
+ "carne patinho grelhado": [
+  219,
+  35,
+  0,
+  8
+ ],
+ "carne alcatra grelhada": [
+  232,
+  32,
+  0,
+  11
+ ],
+ "carne moida refogada": [
+  250,
+  26,
+  0,
+  16
+ ],
+ "salmão grelhado": [
+  208,
+  23,
+  0,
+  12
+ ],
+ "tilápia grelhada": [
+  128,
+  26,
+  0,
+  3
+ ],
+ "atum em lata": [
+  116,
+  26,
+  0,
+  1
+ ],
+ "ovo inteiro cozido": [
+  155,
+  13,
+  1,
+  11
+ ],
+ "ovo clara": [
+  52,
+  11,
+  1,
+  0.2
+ ],
+ "queijo minas": [
+  264,
+  17,
+  3,
+  20
+ ],
+ "queijo mussarela": [
+  298,
+  22,
+  2,
+  22
+ ],
+ "queijo cottage": [
+  98,
+  11,
+  3,
+  4
+ ],
+ "iogurte grego natural": [
+  97,
+  10,
+  3,
+  5
+ ],
+ "iogurte natural": [
+  61,
+  3,
+  5,
+  3
+ ],
+ "leite desnatado": [
+  35,
+  3,
+  5,
+  0.2
+ ],
+ "leite integral": [
+  61,
+  3,
+  5,
+  3
+ ],
+ "whey protein": [
+  380,
+  80,
+  5,
+  3
+ ],
+ "arroz branco cozido": [
+  130,
+  2.7,
+  28,
+  0.3
+ ],
+ "arroz integral cozido": [
+  112,
+  2.6,
+  23,
+  0.9
+ ],
+ "feijão carioca cozido": [
+  76,
+  4.8,
+  14,
+  0.5
+ ],
+ "feijão preto cozido": [
+  77,
+  4.5,
+  14,
+  0.5
+ ],
+ "macarrão cozido": [
+  158,
+  6,
+  31,
+  1
+ ],
+ "macarrão integral cozido": [
+  124,
+  5,
+  26,
+  0.5
+ ],
+ "batata inglesa cozida": [
+  87,
+  2,
+  20,
+  0.1
+ ],
+ "batata doce cozida": [
+  86,
+  2,
+  20,
+  0.1
+ ],
+ "mandioca cozida": [
+  125,
+  0.6,
+  30,
+  0.3
+ ],
+ "pão francês": [
+  300,
+  8,
+  58,
+  3
+ ],
+ "pão integral": [
+  247,
+  9,
+  41,
+  4
+ ],
+ "tapioca (goma)": [
+  240,
+  0,
+  60,
+  0
+ ],
+ "aveia": [
+  394,
+  14,
+  67,
+  7
+ ],
+ "granola": [
+  450,
+  10,
+  65,
+  15
+ ],
+ "polvilho doce": [
+  360,
+  0,
+  90,
+  0
+ ],
+ "banana": [
+  89,
+  1.1,
+  23,
+  0.3
+ ],
+ "maçã": [
+  52,
+  0.3,
+  14,
+  0.2
+ ],
+ "mamão": [
+  43,
+  0.5,
+  11,
+  0.1
+ ],
+ "manga": [
+  60,
+  0.8,
+  15,
+  0.4
+ ],
+ "morango": [
+  32,
+  0.7,
+  8,
+  0.3
+ ],
+ "uva": [
+  69,
+  0.7,
+  18,
+  0.2
+ ],
+ "abacate": [
+  160,
+  2,
+  9,
+  15
+ ],
+ "abacaxi": [
+  50,
+  0.5,
+  13,
+  0.1
+ ],
+ "laranja": [
+  47,
+  0.9,
+  12,
+  0.1
+ ],
+ "melancia": [
+  30,
+  0.6,
+  8,
+  0.2
+ ],
+ "brócolis": [
+  34,
+  2.8,
+  7,
+  0.4
+ ],
+ "cenoura": [
+  41,
+  0.9,
+  10,
+  0.2
+ ],
+ "abobrinha": [
+  17,
+  1.2,
+  3,
+  0.3
+ ],
+ "tomate": [
+  18,
+  0.9,
+  4,
+  0.2
+ ],
+ "alface": [
+  15,
+  1.4,
+  3,
+  0.2
+ ],
+ "espinafre": [
+  23,
+  2.9,
+  3.6,
+  0.4
+ ],
+ "couve": [
+  49,
+  4.3,
+  9,
+  0.9
+ ],
+ "pepino": [
+  15,
+  0.7,
+  3.6,
+  0.1
+ ],
+ "pimentão": [
+  31,
+  1,
+  6,
+  0.3
+ ],
+ "cebola": [
+  40,
+  1.1,
+  9,
+  0.1
+ ],
+ "azeite de oliva": [
+  884,
+  0,
+  0,
+  100
+ ],
+ "castanha do pará": [
+  656,
+  14,
+  12,
+  66
+ ],
+ "castanha de caju": [
+  553,
+  18,
+  30,
+  44
+ ],
+ "amendoim": [
+  567,
+  26,
+  16,
+  49
+ ],
+ "pasta de amendoim": [
+  598,
+  25,
+  20,
+  50
+ ],
+ "chia": [
+  486,
+  17,
+  42,
+  31
+ ],
+ "linhaça": [
+  534,
+  18,
+  29,
+  42
+ ],
+ "mel": [
+  304,
+  0.3,
+  82,
+  0
+ ],
+ "açúcar": [
+  387,
+  0,
+  100,
+  0
+ ],
+ "chocolate 70%": [
+  598,
+  8,
+  46,
+  43
+ ],
+ "café preto": [
+  1,
+  0.1,
+  0,
+  0
+ ],
+ "leite condensado": [
+  321,
+  8,
+  55,
+  8
+ ],
+ "goiabada": [
+  270,
+  0,
+  68,
+  0
+ ],
+ "doce de leite": [
+  315,
+  6,
+  56,
+  7
+ ],
+ "pipoca (estourada)": [
+  387,
+  13,
+  78,
+  4
+ ],
+ "requeijão light": [
+  160,
+  10,
+  3,
+  12
+ ],
+ "cream cheese light": [
+  200,
+  8,
+  4,
+  16
+ ],
+ "maionese light": [
+  300,
+  0,
+  3,
+  33
+ ],
+ "shoyu": [
+  53,
+  5,
+  6,
+  0
+ ],
+ "mostarda": [
+  66,
+  4,
+  5,
+  4
+ ],
+ "vinagre": [
+  18,
+  0,
+  0,
+  0
+ ]
+}

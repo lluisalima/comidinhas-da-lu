@@ -158,6 +158,38 @@ nav.menu button.on{color:var(--rosa-f)}
   <div class="rodape">feito com 💗 pelo seu molusquinho</div>
 </section>
 
+<!-- ============ PESEI ============ -->
+<section class="tab" id="tab-pesei">
+  <div class="card">
+    <h2>⚖️ Calcule o que você pesou</h2>
+    <p>Digite o alimento, o peso em gramas e aperte +. O app calcula tudo <b>matematicamente</b> usando a Tabela Brasileira de Composição de Alimentos (TBCA-USP). Zero IA, zero custo, zero mistério. 🧮</p>
+  </div>
+
+  <div class="card">
+    <input type="text" id="inputAlimento" placeholder="Ex: frango peito grelhado" style="width:100%;padding:12px;border:2px solid var(--rosa-claro);border-radius:14px;font-family:inherit;font-weight:700;font-size:.9rem;margin-bottom:10px">
+    <input type="number" id="inputGramas" placeholder="Gramas (ex: 150)" style="width:100%;padding:12px;border:2px solid var(--rosa-claro);border-radius:14px;font-family:inherit;font-weight:700;font-size:.9rem;margin-bottom:10px">
+    <button class="btn" id="btnAddPeso" style="margin:0">➕ Adicionar à refeição</button>
+  </div>
+
+  <div id="listaPesados"></div>
+
+  <div class="card" id="resumoPesados" style="display:none">
+    <h2>🧮 Total da refeição</h2>
+    <div class="grid-metas">
+      <div class="meta m-rosa"><div class="num" id="totKcal">0</div><div class="lbl">kcal</div></div>
+      <div class="meta m-verde"><div class="num" id="totP">0g</div><div class="lbl">proteína</div></div>
+      <div class="meta m-amarelo"><div class="num" id="totC">0g</div><div class="lbl">carboidrato</div></div>
+      <div class="meta m-azul"><div class="num" id="totG">0g</div><div class="lbl">gordura</div></div>
+    </div>
+    <button class="btn ghost" id="btnLimparPesados" style="margin-top:12px;margin-bottom:0">🗑️ Limpar tudo</button>
+  </div>
+
+  <div class="card">
+    <h2>📚 Base de dados</h2>
+    <p>Usamos a <b>TBCA (Tabela Brasileira de Composição de Alimentos)</b> da USP — a mesma que nutricionistas usam. Valores por 100g do alimento. Se não achar algo, escreve parecido (ex: "frango" acha "frango peito grelhado").</p>
+  </div>
+</section>
+
 <!-- ============ MARMITAS ============ -->
 <section class="tab" id="tab-marmitas">
   <div class="chips" id="filtros">
@@ -200,6 +232,7 @@ nav.menu button.on{color:var(--rosa-f)}
 
 <nav class="menu">
   <button class="on" data-tab="hoje"><span class="ic">🏠</span>Hoje</button>
+  <button data-tab="pesei"><span class="ic">⚖️</span>Pesei</button>
   <button data-tab="marmitas"><span class="ic">🍱</span>Marmitas</button>
   <button data-tab="docuras"><span class="ic">🍰</span>Doçuras</button>
   <button data-tab="semana"><span class="ic">📅</span>Semana</button>
@@ -557,6 +590,98 @@ $('#btnMercado').onclick=gerarMercado;
 /* init */
 renderMarmitas();renderDocuras();renderSemana();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+
+/* ================= PESADOR MATEMÁTICO ================= */
+let TBCA={};
+fetch('data/tbca.json').then(r=>r.json()).then(d=>{TBCA=d;console.log('TBCA carregada:',Object.keys(TBCA).length,'alimentos')}).catch(()=>{console.warn('TBCA offline, usando fallback')});
+
+function buscarAlimento(txt){
+  const t=txt.toLowerCase().trim();
+  if(TBCA[t]) return {nome:t, ...TBCA[t]};
+  // busca por substring
+  for(const [k,v] of Object.entries(TBCA)){
+    if(k.includes(t) || t.includes(k)) return {nome:k, ...v};
+  }
+  return null;
+}
+
+function calcularMacros(kcal100, p100, c100, g100, gramas){
+  const f=gramas/100;
+  return {
+    kcal: Math.round(kcal100*f),
+    p: Math.round(p100*f*10)/10,
+    c: Math.round(c100*f*10)/10,
+    g: Math.round(g100*f*10)/10
+  };
+}
+
+let pesados=JSON.parse(localStorage.getItem('lu_pesados')||'[]');
+
+function renderPesados(){
+  const box=$('#listaPesados');
+  const resumo=$('#resumoPesados');
+  if(!pesados.length){
+    box.innerHTML='';
+    resumo.style.display='none';
+    return;
+  }
+  box.innerHTML=pesados.map((p,i)=>`
+    <div class="opcao" style="cursor:default">
+      <div class="foto g${i%5}" style="font-size:1.5rem">⚖️</div>
+      <div class="info">
+        <div class="nome">${p.nome} (${p.gramas}g)</div>
+        <div class="macros">
+          <span class="pill">🔥 ${p.kcal}</span>
+          <span class="pill p">P ${p.p}g</span>
+          <span class="pill c">C ${p.c}g</span>
+          <span class="pill g">G ${p.g}g</span>
+        </div>
+      </div>
+      <button onclick="removerPesado(${i})" style="border:none;background:var(--rosa-claro);color:#A4556B;font-weight:900;padding:8px 12px;border-radius:12px;cursor:pointer">✕</button>
+    </div>`).join('');
+  resumo.style.display='block';
+  const tot=pesados.reduce((a,b)=>({kcal:a.kcal+b.kcal, p:a.p+b.p, c:a.c+b.c, g:a.g+b.g}), {kcal:0,p:0,c:0,g:0});
+  $('#totKcal').textContent=fmt(tot.kcal);
+  $('#totP').textContent=tot.p.toFixed(1)+'g';
+  $('#totC').textContent=tot.c.toFixed(1)+'g';
+  $('#totG').textContent=tot.g.toFixed(1)+'g';
+}
+
+function removerPesado(i){
+  pesados.splice(i,1);
+  localStorage.setItem('lu_pesados',JSON.stringify(pesados));
+  renderPesados();
+}
+
+$('#btnAddPeso').onclick=()=>{
+  const nome=$('#inputAlimento').value.trim();
+  const gramas=parseFloat($('#inputGramas').value);
+  if(!nome || !gramas || gramas<=0){
+    alert('Preencha o alimento e o peso em gramas! 🥺');
+    return;
+  }
+  const al=buscarAlimento(nome);
+  if(!al){
+    alert('Alimento não encontrado na TBCA 😅\nTenta escrever de outro jeito (ex: "frango" em vez de "peito de frango grelhado").\n\nAlimentos disponíveis: frango, carne, salmão, arroz, feijão, batata, macarrão, pão, tapioca, aveia, banana, maçã, brócolis, cenoura, tomate, azeite, queijo, iogurte, leite, ovo...');
+    return;
+  }
+  const m=calcularMacros(al.kcal, al.p, al.c, al.g, gramas);
+  pesados.push({nome:al.nome, gramas, ...m});
+  localStorage.setItem('lu_pesados',JSON.stringify(pesados));
+  $('#inputAlimento').value='';
+  $('#inputGramas').value='';
+  renderPesados();
+};
+
+$('#btnLimparPesados').onclick=()=>{
+  if(confirm('Limpar tudo? 🗑️')){
+    pesados=[];
+    localStorage.removeItem('lu_pesados');
+    renderPesados();
+  }
+};
+
+renderPesados();
 </script>
 </body>
 </html>
