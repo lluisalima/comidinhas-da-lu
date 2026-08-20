@@ -115,14 +115,26 @@ nav.menu button.on{color:var(--rosa-f)}
 <!-- ============ HOJE ============ -->
 <section class="tab ativa" id="tab-hoje">
   <div class="card">
-    <h2>🎯 Suas metas de hoje</h2>
-    <p>Déficit leve pra perder os 5kg <b>sem perder músculo</b> — proteína alta é a estrela do show.</p>
+    <h2>🎯 Suas metas (dados reais da bioimpedância)</h2>
+    <p>Recomposição corporal: <b>ganhar músculo</b> (+7,7kg é a meta da sua balança!) mantendo a gordura. Proteína alta é a estrela do show.</p>
     <div class="grid-metas">
-      <div class="meta m-rosa"><div class="num">~1.800</div><div class="lbl">kcal/dia</div></div>
-      <div class="meta m-verde"><div class="num">~105g</div><div class="lbl">proteína</div></div>
-      <div class="meta m-amarelo"><div class="num">~180g</div><div class="lbl">carboidrato</div></div>
-      <div class="meta m-azul"><div class="num">~60g</div><div class="lbl">gordura boa</div></div>
+      <div class="meta m-rosa"><div class="num">~1.950</div><div class="lbl">kcal/dia</div></div>
+      <div class="meta m-verde"><div class="num">~120g</div><div class="lbl">proteína</div></div>
+      <div class="meta m-amarelo"><div class="num">~220g</div><div class="lbl">carboidrato</div></div>
+      <div class="meta m-azul"><div class="num">~65g</div><div class="lbl">gordura boa</div></div>
     </div>
+  </div>
+
+  <div class="card">
+    <h2>📊 Sua bioimpedância (20/08/2026)</h2>
+    <div class="grid-metas">
+      <div class="meta m-azul"><div class="num">57,9kg</div><div class="lbl">peso · IMC 18,7</div></div>
+      <div class="meta m-rosa"><div class="num">26,9%</div><div class="lbl">gordura ✅</div></div>
+      <div class="meta m-amarelo"><div class="num">23,3kg</div><div class="lbl">músculo ⚠️ baixo</div></div>
+      <div class="meta m-verde"><div class="num">1.285</div><div class="lbl">kcal TMB</div></div>
+    </div>
+    <p style="margin-top:10px">🧬 <b>Idade do corpo: 22 anos</b> (mais nova que você!) · Gordura visceral: 6 (ótimo) · Equilíbrio muscular: braços/pernas/tronco todos simétricos ✅<br><br>
+    💡 <b>Plano da balança:</b> peso alvo 65,1kg = <b>+7,7kg de músculo</b> e só -0,5kg de gordura. Ou seja: seu objetivo real é <b>ganho magro</b>, não perda! O "5kg a menos" vai acontecer no espelho (cintura firme, corpo definido), não na balança.</p>
   </div>
 
   <div class="dica" style="background:var(--azul-claro);color:#3F6BA3">
@@ -132,11 +144,6 @@ nav.menu button.on{color:var(--rosa-f)}
   <div class="card">
     <h2>🌱 Futura mamãe</h2>
     <p>Você quer construir um corpo forte e saudável pra isso — então nada de dieta maluca! Prioridades: <b>proteína em toda refeição</b>, folhas verde-escuras (folato), ferro (feijão, carnes) e ômega-3 (sardinha, ovos, chia). Esse plano já cobre tudo isso. 💪</p>
-  </div>
-
-  <div class="card">
-    <h2>📊 Bioimpedância</h2>
-    <p>Quando você me mandar o resultado da balança (% de gordura, massa magra etc.), eu ajusto suas metas com precisão cirúrgica. Por enquanto usamos estimativas pra 1,77m voltando a treinar. 💕</p>
   </div>
 
   <div class="card">
@@ -179,7 +186,7 @@ nav.menu button.on{color:var(--rosa-f)}
   <button class="btn" id="btnSemana">🎲 Montar minha semana</button>
   <div id="listaSemana"></div>
   <div class="dica" style="background:var(--verde-claro);color:#3E7A48">
-    💚 Não repetir é a regra da casa: o sorteio garante combinações diferentes todos os dias. Não curtiu um dia? Use o <b>↺ trocar</b> só naquele dia. Nos dias <b>sem treino</b>, se quiser acelerar a perda, troque a doçura por uma fruta + chá. 🍵
+    💚 Não repetir é a regra da casa: o sorteio garante combinações diferentes todos os dias. Não curtiu um dia? Use o <b>↺ trocar</b> só naquele dia. Nos dias de <b>treino pesado</b>, capricha na doçura — ela é combustível pro músculo crescer. 🍰💪
   </div>
 </section>
 
@@ -207,9 +214,9 @@ nav.menu button.on{color:var(--rosa-f)}
 /* ================= DADOS ================= */
 const FRASES=[
 "Corpo forte se constrói um prato bonito por vez. 🌸","Hoje você cozinha pro seu futuro eu. Ele agradece! ✨",
-"Definida, forte e feliz — nessa ordem. 💪","Doce planejado não é trapaça, é sabedoria. 🍰",
+"Músculo se constrói comendo — 120g de proteína hoje! 💪","Doce planejado não é trapaça, é sabedoria. 🍰",
 "Mineira que é mineira faz até pão de queijo proteico. 🧀","Beba chá, coma proteína, conquiste o mundo. 🍵",
-"5kg a menos comendo bem: esse é o caminho, e ele é gostoso. 🌷","Um dia de cada vez, um prato colorido por dia. 🌈",
+"7,7kg de músculo pra construir — bora alimentar eles! 🏗️","Um dia de cada vez, um prato colorido por dia. 🌈",
 "Você cozinha bonito — agora cozinha estratégico. 👩‍🍳","Meia maratona começa no prato de hoje. 🏃‍♀️"];
 
 const SLOTS=[
@@ -481,7 +488,7 @@ function renderSemana(){
     const dc=DOCURAS[plano[di].docura];
     kcal+=dc.kcal;prot+=dc.p;
     linhas+=`<div class="pick"><span class="em">${dc.emoji}</span><span class="nm"><b style="color:var(--texto-suave);font-size:.7rem">🍰 Doçura do dia:</b><br>${dc.nome}</span><span class="kc">${dc.kcal} kcal</span></div>`;
-    const ok=kcal>=1650&&kcal<=2000;
+    const ok=kcal>=1750&&kcal<=2150;
     box.innerHTML+=`<div class="dia">
       <div class="dia-topo"><h3>${d}</h3><button data-dia="${di}">↺ trocar</button></div>
       ${linhas}
